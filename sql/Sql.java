@@ -1,6 +1,5 @@
-package com.kfr.db.mapper;
+package com.kfr.youkuang.mapper;
 
-import com.kfr.db.entity.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
