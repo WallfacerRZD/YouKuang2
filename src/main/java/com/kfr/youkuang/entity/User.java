@@ -7,19 +7,20 @@ import java.util.Objects;
  * @date 2018/11/19 22:11
  */
 public class User {
+    private int userID;
     private String userName;
-
     private String password;
 
-    public User(String userName, String password) {
+    public User(int userID, String userName, String password) {
 
+        this.userID = userID;
         this.userName = userName;
         this.password = password;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User{" + "userID='" + userID + '\'' +
                 "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
@@ -34,14 +35,24 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return Objects.equals(getUserName(), user.getUserName()) &&
+        return Objects.equals(getUserID(), user.getUserID()) &&
+                Objects.equals(getUserName(), user.getUserName()) &&
                 Objects.equals(getPassword(), user.getPassword());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getUserName(), getPassword());
+        return Objects.hash(getUserID(), getUserName(), getPassword());
+    }
+
+    public int getUserID() {
+
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {
@@ -54,6 +65,7 @@ public class User {
     }
 
     public String getPassword() {
+
         return password;
     }
 

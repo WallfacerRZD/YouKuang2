@@ -31,10 +31,24 @@ public class UserService {
         final String newUserName = newUser.getUserName();
         User selectedUser = userDao.selectUserByUserName(newUserName);
         if (selectedUser == null) {
-            userDao.insertOneUser(newUser);
+            userDao.insertOneUser(newUser);//新建用户
             return new UserServiceStatus(UserServiceStatus.SUCCEED, "注册成功");
         } else {
             return new UserServiceStatus(UserServiceStatus.FAILED, "账号已被注册");
         }
+
+    }
+
+    //登录
+    public UserServiceStatus login(final User loginUser) {
+        final String loginUserName = loginUser.getUserName();
+        User selectedUser = userDao.selectUserByUserName(loginUserName);
+        if(selectedUser.getPassword().equals(loginUser.getPassword())){
+            return new UserServiceStatus(UserServiceStatus.SUCCEED, "登录成功");
+        }else{
+            return new UserServiceStatus(UserServiceStatus.FAILED, "登录失败");
+        }
+
+
     }
 }

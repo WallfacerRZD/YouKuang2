@@ -21,7 +21,12 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public UserServiceStatus register(final String userName, final String password) {
-        return userService.register(new User(userName, password));
+    public UserServiceStatus register(final int userID, final String userName, final String password) {
+        return userService.register(new User(userID, userName, password));
+    }
+
+    @GetMapping("/login")
+    public UserServiceStatus login(final int userID, final String userName, final String password) {
+        return userService.login(new User(userID, userName, password));
     }
 }
