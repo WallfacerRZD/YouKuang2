@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author WallfacerRZD
  * @date 2018/11/20 23:35
@@ -26,8 +28,10 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public UserServiceStatus login(final int userID, final String userName, final String password) {
-        return userService.login(new User(userName, password));
+    public UserServiceStatus login(final String userName,
+                                   final String password,
+                                   final HttpServletRequest request) {
+        return userService.login(new User(userName, password), request);
     }
 
 
