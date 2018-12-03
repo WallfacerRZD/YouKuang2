@@ -15,10 +15,9 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserMapper {
     @Select("SELECT * FROM youkuang_user where userName = #{userName}")
-    User selectUserByUserName(@Param("userName") final String userName);//password?
+    User selectUserByUserName(@Param("userName") final String userName);
 
-    @Insert("INSERT INTO youkuang_user(userID, userName, password) values(#{userID}, #{userName}, #{password})")
-    void insertOneUser(@Param("userID") final int userID,
-                       @Param("userName") final String userName,
+    @Insert("INSERT INTO youkuang_user(userName, password) values(#{userName}, #{password})")
+    void insertOneUser(@Param("userName") final String userName,
                        @Param("password") final String password);
 }

@@ -23,11 +23,11 @@ public class UserDao {
     }
 
     public void insertOneUser(final User user) {
-        final int userID = user.getUserID();//修改，分配ID
+       // final int userID = user.getUserID();//修改，分配ID
         final String userName = user.getUserName();
         final String password = user.getPassword();
         System.out.println(userName);
         System.out.println(password);
-        userMapper.insertOneUser(userID, userName, password);
+        userMapper.insertOneUser(userName, password);
     }
 }
