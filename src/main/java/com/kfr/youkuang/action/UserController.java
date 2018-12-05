@@ -32,4 +32,12 @@ public class UserController {
     public UserServiceStatus createAccount(final String AccountName, final String UserName){
         return  userService.createAccount(new Account(AccountName, UserName));
     }
+
+    @GetMapping("/login")
+    public UserServiceStatus login(final int userID, final String userName, final String password) {
+        return userService.login(new User(userName, password));
+    }
+
+
+
 }
