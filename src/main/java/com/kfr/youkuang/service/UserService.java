@@ -1,7 +1,6 @@
 package com.kfr.youkuang.service;
 
 import com.kfr.youkuang.dao.UserDao;
-import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,14 +61,5 @@ public class UserService {
 
     }
 
-    public UserServiceStatus createAccount(final Account newAccount){
-        final String newAccountName= newAccount.getAccountName();
-        Account selectedAccount = userDao.selectAccountByAccountName(newAccountName);
-        if(selectedAccount == null){
-            userDao.insertOneAccount(newAccount);
-            return  new UserServiceStatus(UserServiceStatus.SUCCEED, "创建账本成功");
-        } else {
-            return new UserServiceStatus(UserServiceStatus.FAILED, "账本名已存在");
-        }
-    }
+
 }

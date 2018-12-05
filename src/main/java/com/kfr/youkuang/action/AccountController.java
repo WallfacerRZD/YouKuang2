@@ -2,7 +2,9 @@ package com.kfr.youkuang.action;
 
 import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.service.AccountService;
+import com.kfr.youkuang.service.UserServiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,5 +42,10 @@ public class AccountController {
          */
         final String userID = (String) session.getAttribute("userID");
         return accountService.getAllAccountsByUserID(Integer.valueOf(userID));
+    }
+
+    @GetMapping("/createAccount")  //存疑
+    public UserServiceStatus createAccount(final String AccountName, final String UserName){
+        return  accountService.createAccount(new Account(AccountName, UserName));
     }
 }

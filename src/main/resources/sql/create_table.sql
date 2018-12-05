@@ -7,10 +7,12 @@ create table youkuang_user(
   primary key (userId)
 );
 create table account(
-  AccountID serial,
-  AccountName varchar(32) not null,
+  accountID serial,
+  accountName varchar(32) not null,
   UserID int not null,
   sum double precision,
+  lastModifiedTime timestamp,
+  createdTime timestamp,
   primary key (AccountID)
 );
 

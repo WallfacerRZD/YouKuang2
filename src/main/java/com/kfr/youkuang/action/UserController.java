@@ -30,11 +30,6 @@ public class UserController {
         return userService.register(new User(userName, password));
     }
 
-    @GetMapping("/createAccount")
-    public UserServiceStatus createAccount(final String AccountName, final String UserName){
-        return  userService.createAccount(new Account(AccountName, UserName));
-    }
-
     @GetMapping("/login")
     public UserServiceStatus login(final String userName,
                                    final String password,
