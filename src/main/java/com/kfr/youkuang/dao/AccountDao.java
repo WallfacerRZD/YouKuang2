@@ -22,8 +22,16 @@ public class AccountDao {
     }
 
     public void insertOneAccount(final Account account){
-        final  String AccountName = account.getAccountName();
-        final  String UserName = account.getUserName();
-        accountMapper.insertOneAccount(AccountName, UserName);
+        final  int AccountID = account.getAccountID();
+        final  int UserID = account.getUserID();
+        String tablename = "delUserID" + "_" + "delAccountID";
+        accountMapper.insertOneAccount(AccountID, UserID);
+        accountMapper.createNewAccounttable(tablename);
+    }
+
+    public boolean deleteAccount(int delAccountID, int delUserID) {
+        String tablename = "delUserID" + "_" + "delAccountID";
+        accountMapper.dropAccounttable(tablename);
+        return  accountMapper.deleteAccount(delAccountID, delUserID);
     }
 }
