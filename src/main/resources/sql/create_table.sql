@@ -1,5 +1,6 @@
 drop table youkuang_user;
 drop table account;
+drop table account_item;
 create table youkuang_user(
   userId serial,
   userName varchar(32) not null,
@@ -10,10 +11,20 @@ create table account(
   accountID serial,
   accountName varchar(32) not null,
   UserID int not null,
-  sum double precision,
+  sum numeric,
   lastModifiedTime timestamp,
   createdTime timestamp,
   primary key (AccountID)
+);
+
+create table account_item(
+  iNO serial,
+  inOut varchar(32) not null,
+  money numeric,
+  time timestamp,
+  item_type int not null,
+  tip varchar(50) not null,
+  primary key (iNo)
 );
 
 /*test*/

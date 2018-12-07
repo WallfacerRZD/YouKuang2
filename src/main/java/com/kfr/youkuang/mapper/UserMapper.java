@@ -14,9 +14,11 @@ import org.springframework.stereotype.Component;
 @Mapper
 @Component
 public interface UserMapper {
+    //按姓名查找用户
     @Select("SELECT * FROM youkuang_user where userName = #{userName}")
     User selectUserByUserName(@Param("userName") final String userName);
 
+    //插入新用户
     @Insert("INSERT INTO youkuang_user(userName, password) values(#{userName}, #{password})")
     void insertOneUser(@Param("userName") final String userName,
                        @Param("password") final String password);
