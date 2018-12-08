@@ -22,8 +22,7 @@ public class AccountService {
     }
 
     public List<Account> getAllAccountsByUserID(final int userID) {
-        // todo
-        return new ArrayList<>();
+        return accountDao.getAllAccountsByUserID(userID);
     }
 
     public ServiceStatus createAccount(final Account newAccount){

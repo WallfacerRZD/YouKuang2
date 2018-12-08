@@ -4,6 +4,8 @@ import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class AccountDao {
 
     private final AccountMapper accountMapper;
@@ -33,5 +35,15 @@ public class AccountDao {
         String tablename = "delUserID" + "_" + "delAccountID";
         accountMapper.dropAccounttable(tablename);
         return  accountMapper.deleteAccount(delAccountID, delUserID);
+    }
+
+    public List<Account> getAllAccountsByUserID(final int userID) {
+        List accountIDs = accountMapper.getaccountsIDbyUserID(userID);
+        List<Account> allAccounts = null;
+        for(int i = 0; i <accountIDs.size() ; i++){
+            Account a = accountMapper.selectAccountByAccountID((Integer) accountIDs.get(i));
+            allAccounts.add(a);
+        }
+        return accountIDs;
     }
 }
