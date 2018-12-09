@@ -4,7 +4,7 @@ package com.kfr.youkuang.service;
  * @author WallfacerRZD
  * @date 2018/11/19 23:16
  */
-public class UserServiceStatus {
+public class ServiceStatus {
     public static final boolean SUCCEED = true;
 
     public static final boolean FAILED = false;
@@ -13,7 +13,7 @@ public class UserServiceStatus {
 
     private String description;
 
-    public UserServiceStatus(boolean succeed, String description) {
+    public ServiceStatus(boolean succeed, String description) {
         this.succeed = succeed;
         this.description = description;
     }

@@ -1,10 +1,11 @@
 package com.kfr.youkuang.service;
 
 import com.kfr.youkuang.dao.UserDao;
-import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author WallfacerRZD
@@ -25,28 +26,40 @@ public class UserService {
 
     /**
      * 验证等业务逻辑写在Service层
+     *
      * @param newUser
      * @return 注册成功返回true, 注册失败返回false
      */
-    public UserServiceStatus register(final User newUser) {
+    public ServiceStatus register(final User newUser) {
         final String newUserName = newUser.getUserName();
         User selectedUser = userDao.selectUserByUserName(newUserName);
         if (selectedUser == null) {
-            userDao.insertOneUser(newUser);
-            return new UserServiceStatus(UserServiceStatus.SUCCEED, "注册成功");
+            userDao.insertOneUser(newUser);//新建用户
+            return new ServiceStatus(ServiceStatus.SUCCEED, "注册成功");
         } else {
-            return new UserServiceStatus(UserServiceStatus.FAILED, "账号已被注册");
+            return new ServiceStatus(ServiceStatus.FAILED, "账号已被注册");
         }
+
     }
 
-    public UserServiceStatus createAccount(final Account newAccount){
-        final String newAccountName= newAccount.getAccountName();
-        Account selectedAccount = userDao.selectAccountByAccountName(newAccountName);
-        if(selectedAccount == null){
-            userDao.insertOneAccount(newAccount);
-            return  new UserServiceStatus(UserServiceStatus.SUCCEED, "创建账本成功");
+    //登录
+    public ServiceStatus login(final User loginUser, final HttpServletRequest request) {
+        final String loginUserName = loginUser.getUserName();
+        User selectedUser = userDao.selectUserByUserName(loginUserName);
+        if (selectedUser.getPassword().equals(loginUser.getPassword())) {
+            /*
+                将登录成功的userID存到session中
+                该用户后续的请求调用session.getAttribute("userID")将返回userID
+             */
+            request.getSession().setAttribute("userID", selectedUser.getUserID());
+            return new ServiceStatus(ServiceStatus.SUCCEED, "登录成功");
         } else {
-            return new UserServiceStatus(UserServiceStatus.FAILED, "账本名已存在");
+            // 登录失败
+            return new ServiceStatus(ServiceStatus.FAILED, "登录失败");
         }
+
+
     }
+
+
 }

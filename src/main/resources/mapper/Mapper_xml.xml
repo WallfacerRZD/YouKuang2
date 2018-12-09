@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 对应 Account 还是 AccountItem？ -->
+
+<mapper namespace="com.kfr.youkuang.mapper.AccountMapper">
+
+    <!-- 建表 -->
+    <!-- 1.ddl使用update标签 -->
+    <!-- 2.ddl使用${}取值 -->
+    <update id="createNewAccounttable" parameterType="String">
+        create table ${tableName} (
+            iNo serial,
+            inOut varchar(10) DEFAULT NULL,
+            money int DEFAULT NULL,
+            time date DEFAULT NULL,
+            typeID int DEFAULT NULL,
+            tip varchar(140) DEFAULT NULL,
+            PRIMARY KEY (iNo)
+            );
+    </update>
+
+    <!-- 删表 -->
+    <update id="dropAccounttable" parameterType="String">
+        drop table ${tableName};
+    </update>
+
+</mapper>
+    

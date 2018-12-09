@@ -1,7 +1,6 @@
 package com.kfr.youkuang.dao;
 
 import com.kfr.youkuang.entity.User;
-import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,6 +23,7 @@ public class UserDao {
     }
 
     public void insertOneUser(final User user) {
+       // final int userID = user.getUserID();//修改，分配ID
         final String userName = user.getUserName();
         final String password = user.getPassword();
         System.out.println(userName);
@@ -31,13 +31,5 @@ public class UserDao {
         userMapper.insertOneUser(userName, password);
     }
 
-    public Account selectAccountByAccountName(final String AccountName) {
-        return userMapper.selectAccountByAccountName(AccountName);
-    }
 
-    public void insertOneAccount(final Account account){
-        final  String AccountName = account.getAccountName();
-        final  String UserName = account.getUserName();
-        userMapper.insertOneAccount(AccountName, UserName);
-    }
 }
