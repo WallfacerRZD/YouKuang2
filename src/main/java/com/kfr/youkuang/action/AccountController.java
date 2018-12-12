@@ -41,7 +41,7 @@ public class AccountController {
         return accountService.getAllAccountsByUserID(Integer.valueOf(userID));
     }
 
-    @PostMapping("/account/{accountID}")  //存疑
+    @PostMapping("/account}")  //存疑
     public ServiceStatus createAccount(final String AccountName, final String UserName){
         return  accountService.createAccount(new Account(AccountName, UserName));
     }

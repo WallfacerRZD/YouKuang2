@@ -9,7 +9,7 @@ create table youkuang_user(
 );
 create table account(
   accountID serial,
-  accountName varchar(32) not null,
+  accountName varchar(32),
   UserID int not null,
   sum numeric,
   lastModifiedTime timestamp,

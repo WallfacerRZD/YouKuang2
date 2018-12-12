@@ -20,12 +20,12 @@ public interface AccountMapper {
 
 
     //存疑 动态建表？
-    void createNewAccounttable(@Param("tablename")String tablename);
+    void createNewAccountTable(@Param("tableName")String tableName);
 
-
+    //删account的表里面一行的记录
     @Delete("DELETE FROM account WHERE accountID =  #{accountID} AND UserID =  #{UserID}")
     boolean deleteAccount(@Param("accountID")int accountID, @Param("UserID")int UserID);
 
     //删表
-    boolean dropAccounttable(@Param("tablename")String tablename);
+    boolean dropAccountTable(@Param("tableName")String tableName);
 }

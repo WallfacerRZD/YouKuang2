@@ -9,20 +9,20 @@
     <!-- 建表 -->
     <!-- 1.ddl使用update标签 -->
     <!-- 2.ddl使用${}取值 -->
-    <update id="createNewAccounttable" parameterType="String">
+    <update id="createNewAccountTable" parameterType="String"  statementType="STATEMENT">
         create table ${tableName} (
             iNo serial,
             inOut varchar(10) DEFAULT NULL,
-            money int DEFAULT NULL,
-            time date DEFAULT NULL,
+            money numeric DEFAULT NULL,
             typeID int DEFAULT NULL,
+            time timestamp DEFAULT NULL,
             tip varchar(140) DEFAULT NULL,
             PRIMARY KEY (iNo)
             );
     </update>
 
     <!-- 删表 -->
-    <update id="dropAccounttable" parameterType="String">
+    <update id="dropAccountTable" parameterType="String" statementType="STATEMENT">
         drop table ${tableName};
     </update>
 
