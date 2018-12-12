@@ -2,12 +2,9 @@ package com.kfr.youkuang.action;
 
 import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.service.AccountService;
-import com.kfr.youkuang.service.UserServiceStatus;
+import com.kfr.youkuang.service.ServiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -44,8 +41,14 @@ public class AccountController {
         return accountService.getAllAccountsByUserID(Integer.valueOf(userID));
     }
 
-    @GetMapping("/createAccount")  //存疑
-    public UserServiceStatus createAccount(final String AccountName, final String UserName){
+    @PostMapping("/account/{accountID}")  //存疑
+    public ServiceStatus createAccount(final String AccountName, final String UserName){
         return  accountService.createAccount(new Account(AccountName, UserName));
+    }
+
+    @DeleteMapping("/account/{accountID}")
+    public ServiceStatus deleteAccount(final Account account){
+        return  accountService.deleteAccount(account);
+
     }
 }
