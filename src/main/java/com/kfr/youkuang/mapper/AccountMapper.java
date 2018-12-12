@@ -4,6 +4,8 @@ import com.kfr.youkuang.entity.Account;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface AccountMapper {
@@ -17,6 +19,9 @@ public interface AccountMapper {
 
     @Select("SELECT * FROM account WHERE accountID = #{accountID}")
     Account selectAccountByAccountID(@Param("accountID") final int accountID);
+
+    @Select("SELECT accountID FROM account WHERE UserID = #{UserID}")
+    List getaccountsIDbyUserID(@Param("UserID") final int UserID);
 
 
     //存疑 动态建表？

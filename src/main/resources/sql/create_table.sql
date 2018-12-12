@@ -1,5 +1,6 @@
 drop table youkuang_user;
 drop table account;
+drop table type;
 drop table account_item;
 create table youkuang_user(
   userId serial,
@@ -9,7 +10,7 @@ create table youkuang_user(
 );
 create table account(
   accountID serial,
-  accountName varchar(32),
+  accountName varchar(32) not null,
   UserID int not null,
   sum numeric,
   lastModifiedTime timestamp,
@@ -17,14 +18,10 @@ create table account(
   primary key (AccountID)
 );
 
-create table account_item(
-  iNO serial,
-  inOut varchar(32) not null,
-  money numeric,
-  time timestamp,
-  item_type int not null,
-  tip varchar(50) not null,
-  primary key (iNo)
+create table type(
+  typeID serial,
+  typeName  varchar(32) not null,
+  primary key (typeID)
 );
 
 /*test*/
@@ -32,7 +29,17 @@ create table account_item(
 insert into youkuang_user(userName, password) values ('一个不愿意透露姓名的网友',123);
 insert into youkuang_user(userName, password) values ('一个不愿意透露姓名的网友2',456);
 insert into youkuang_user(userName, password) values ('一个不愿意透露姓名的网友3',789);
-
 delete from youkuang_user where userName = '一个不愿意透露姓名的网友3';
-
 insert into youkuang_user(userName, password) values ('一个不愿意透露姓名的网友4',233);
+
+insert into type(typeName) values ('工资');
+insert into type(typeName) values ('零食烟酒');
+insert into type(typeName) values ('餐饮');
+insert into type(typeName) values ('购物');
+insert into type(typeName) values ('交通');
+insert into type(typeName) values ('娱乐');
+insert into type(typeName) values ('文教');
+insert into type(typeName) values ('通讯');
+insert into type(typeName) values ('人情往来');
+insert into type(typeName) values ('投资');
+insert into type(typeName) values ('其他');
