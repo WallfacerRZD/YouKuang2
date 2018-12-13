@@ -3,9 +3,12 @@ package com.kfr.youkuang.dao;
 import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
+@Repository
 public class AccountDao {
 
     private final AccountMapper accountMapper;
@@ -26,9 +29,12 @@ public class AccountDao {
     public void insertOneAccount(final Account account){
         final  int AccountID = account.getAccountID();
         final  int UserID = account.getUserID();
+        final String accountName = account.getAccountName();
+        final long lastModifiedTime = account.getLastModifiedTime();
+        final long createdTime = account.getCreatedTime();
         String tablename = "delUserID" + "_" + "delAccountID";
-        accountMapper.insertOneAccount(AccountID, UserID);
-        accountMapper.createNewAccounttable(tablename);
+        accountMapper.insertOneAccount(AccountID, accountName, UserID, 0,lastModifiedTime, createdTime);
+        accountMapper.createNewAccountTable(tablename);
     }
 
     public boolean deleteAccount(int delAccountID, int delUserID) {

@@ -28,4 +28,7 @@ public interface UserMapper {
     @Insert("INSERT INTO account(AccountName, UserID) values(#{AccountName}, #{UserID})")
     void  insertOneAccount(@Param("AccountName") final String AccountName,
                            @Param("userName") final String userName);
+
+    @Select("SELECT * FROM youkuang_user WHERE userID = #{userID}")
+    User selectUserByUserID(@Param("userID") final int userID);
 }

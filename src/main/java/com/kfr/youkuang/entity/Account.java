@@ -9,8 +9,8 @@ public class Account {
     private String userName;
     private int userID;
     private double sum;
-    private Date lastModifiedTime;
-    private Date createdTime;
+    private long lastModifiedTime;
+    private long createdTime;
     private String tablename;
 
     public Account(String AccountName, String UserName) {
@@ -18,8 +18,9 @@ public class Account {
         this.accountName = AccountName;
         this.userName = UserName;
         sum = 0;
-        //存疑 lastModifiedTime  createdTime
         tablename = userID + "_" + accountID;
+        lastModifiedTime = System.currentTimeMillis();
+        createdTime = System.currentTimeMillis();
     }
 
     @Override
@@ -46,11 +47,11 @@ public class Account {
         return userID;
     }
 
-    public Date getCreatedTime() {
+    public long getCreatedTime() {
         return createdTime;
     }
 
-    public Date getLastModifiedTime() {
+    public long getLastModifiedTime() {
         return lastModifiedTime;
     }
 

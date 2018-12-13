@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class TypeController {
     private TypeService typeService;
@@ -16,8 +18,18 @@ public class TypeController {
     }
 
     @GetMapping("/selecttype")
-    public Type selecttype(final String typename) {
-        return typeService.selecttype(typename);
+    public Type selecttypeByID(final int tID) {
+        return typeService.selecttypeByID(tID);
+    }
+
+    @GetMapping("/selecttype")
+    public Type selecttypeByName(final String typename) {
+        return typeService.selecttypeByName(typename);
+    }
+
+    @GetMapping("/selecttype")
+    public List<Type> getAlltype() {
+        return typeService.getAlltype();
     }
 
 }

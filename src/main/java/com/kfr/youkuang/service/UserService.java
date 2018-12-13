@@ -62,4 +62,8 @@ public class UserService {
     }
 
 
+    public User userInfo(int userID) {
+        User user = userDao.selectUserByUserID(userID);
+        return user;
+    }
 }

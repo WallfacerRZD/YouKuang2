@@ -4,6 +4,8 @@ import com.kfr.youkuang.dao.TypeDao;
 import com.kfr.youkuang.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class TypeService {
     private final TypeDao typeDao;
 
@@ -12,8 +14,15 @@ public class TypeService {
         this.typeDao = typeDao;
     }
 
-    public Type selecttype(String typename){
+    public Type selecttypeByName(String typename){
         return typeDao.selectType(typename);
     }
 
+    public Type selecttypeByID(int tID) {
+        return typeDao.selecttypeByID(tID);
+    }
+
+    public List<Type> getAlltype() {
+        return typeDao.getAlltype();
+    }
 }
