@@ -17,6 +17,9 @@ public interface UserMapper {
     //按姓名查找用户
     @Select("SELECT * FROM youkuang_user where userName = #{userName}")
     User selectUserByUserName(@Param("userName") final String userName);
+    //按ID查找用户
+    @Select("SELECT * FROM youkuang_user where userID = #{userID}")
+    User selectUserByUserID(@Param("userID") final int userID);
 
     //插入新用户
     @Insert("INSERT INTO youkuang_user(userName, password) values(#{userName}, #{password})")

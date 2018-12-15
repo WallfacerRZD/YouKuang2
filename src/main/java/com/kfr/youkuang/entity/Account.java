@@ -13,10 +13,10 @@ public class Account {
     private Date createdTime;
     private String tablename;
 
-    public Account(String AccountName, String UserName) {
+    public Account(String AccountName, int userID) {
 
         this.accountName = AccountName;
-        this.userName = UserName;
+        this.userID = userID;
         sum = 0;
         //存疑 lastModifiedTime  createdTime
         tablename = userID + "_" + accountID;

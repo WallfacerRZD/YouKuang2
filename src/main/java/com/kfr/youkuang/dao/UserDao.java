@@ -22,8 +22,11 @@ public class UserDao {
         return userMapper.selectUserByUserName(userName);
     }
 
+    public User selectUserByUserID(final int userID) {
+        return userMapper.selectUserByUserID(userID);
+    }
+
     public void insertOneUser(final User user) {
-       // final int userID = user.getUserID();//修改，分配ID
         final String userName = user.getUserName();
         final String password = user.getPassword();
         System.out.println(userName);

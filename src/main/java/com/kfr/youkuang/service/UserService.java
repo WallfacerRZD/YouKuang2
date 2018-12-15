@@ -20,10 +20,6 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public User selectUserByUserName(final String userName) {
-        return this.userDao.selectUserByUserName(userName);
-    }
-
     /**
      * 验证等业务逻辑写在Service层
      *
@@ -35,6 +31,7 @@ public class UserService {
         User selectedUser = userDao.selectUserByUserName(newUserName);
         if (selectedUser == null) {
             userDao.insertOneUser(newUser);//新建用户
+
             return new ServiceStatus(ServiceStatus.SUCCEED, "注册成功");
         } else {
             return new ServiceStatus(ServiceStatus.FAILED, "账号已被注册");
@@ -46,7 +43,9 @@ public class UserService {
     public ServiceStatus login(final User loginUser, final HttpServletRequest request) {
         final String loginUserName = loginUser.getUserName();
         User selectedUser = userDao.selectUserByUserName(loginUserName);
-        if (selectedUser.getPassword().equals(loginUser.getPassword())) {
+        if (selectedUser == null){
+            return new ServiceStatus(ServiceStatus.FAILED,"用户不存在");
+        }else if (selectedUser.getPassword().equals(loginUser.getPassword())) {
             /*
                 将登录成功的userID存到session中
                 该用户后续的请求调用session.getAttribute("userID")将返回userID
@@ -55,11 +54,44 @@ public class UserService {
             return new ServiceStatus(ServiceStatus.SUCCEED, "登录成功");
         } else {
             // 登录失败
-            return new ServiceStatus(ServiceStatus.FAILED, "登录失败");
+            return new ServiceStatus(ServiceStatus.FAILED, "密码错误");
+
+            //重定向到login
         }
 
 
     }
 
+    //登出
+    public void logout(final User logoutUser, final HttpServletRequest request){
+        final String loginUserName = logoutUser.getUserName();
+        //已登录，销毁session
+        if(request.getSession().getAttribute("userID").equals(logoutUser.getUserID())){
+            request.getSession().invalidate();
+            //重定向到login
+        }else{
+            //未登录
+            //重定向
+            //待补充
+
+        }
+    }
+
+
+    //按姓名查询获取用户信息
+    public User selectUserByUserName(final String userName) {
+
+        return this.userDao.selectUserByUserName(userName);
+    }
+
+    //按ID查询获取用户信息
+    public User selectUserByUserID(final int userID) {
+
+        return this.userDao.selectUserByUserID(userID);
+    }
 
 }
+
+
+
+

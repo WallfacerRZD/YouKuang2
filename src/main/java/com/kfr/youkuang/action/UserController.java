@@ -34,6 +34,13 @@ public class UserController {
         return userService.login(new User(userName, password), request);
     }
 
+    //HttpservletSession??
+    @GetMapping("/userInfo")
+    public User userInfo(HttpServletRequest request){
+        int queryUserID = (int)request.getSession().getAttribute("userId");
+        return userService.selectUserByUserID(queryUserID);
+
+    }
 
 
 }

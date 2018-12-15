@@ -15,12 +15,10 @@ import java.util.List;
 @Service
 public class AccountItemService {
     private final AccountItemDao accountItemDao;
-    private final AccountDao accountDao;
 
     @Autowired
-    public AccountItemService(AccountItemDao accountItemDao, AccountDao accountDao){
+    public AccountItemService(AccountItemDao accountItemDao){
         this.accountItemDao = accountItemDao;
-        this.accountDao = accountDao;
 
     }
 
@@ -31,20 +29,39 @@ public class AccountItemService {
 
     }
     //记一笔
-    public void insert(AccountItem accountItem, int accountID, HttpServletRequest request){
+    public ServiceStatus insert(AccountItem accountItem, int accountID, HttpServletRequest request){
         String tableName = Util.getNewTableName(accountID, request);
-        accountItemDao.insertItem(accountItem, tableName);
+        try {
+            accountItemDao.insertItem(accountItem, tableName);
+            return new ServiceStatus(ServiceStatus.SUCCEED,"操作成功");
+        }catch (Exception e){
+            return new ServiceStatus(ServiceStatus.FAILED,"操作失败");
+
+        }
 
     }
 
     //修改账本内容
-    public void modify(AccountItem accountItem){
-
+    public ServiceStatus modify(AccountItem accountItem,int accountID, HttpServletRequest request){
+        String tableName = Util.getNewTableName(accountID, request);
+        try {
+            accountItemDao.modifyItem(accountItem, tableName);
+            return new ServiceStatus(ServiceStatus.SUCCEED,"操作成功");
+        }catch (Exception e){
+            return new ServiceStatus(ServiceStatus.FAILED,"操作失败");
+        }
     }
 
     //删除内容
-    public void delete(){
-
+    public ServiceStatus delete(AccountItem accountItem,int accountID, HttpServletRequest request){
+        String tableName = Util.getNewTableName(accountID, request);
+        int iNo = accountItem.getiNo();
+        try {
+            accountItemDao.deleteItem(iNo, tableName);
+            return new ServiceStatus(ServiceStatus.SUCCEED,"操作成功");
+        }catch (Exception e){
+            return new ServiceStatus(ServiceStatus.FAILED,"操作失败");
+        }
     }
 
 }

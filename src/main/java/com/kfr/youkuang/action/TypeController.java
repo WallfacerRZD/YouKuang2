@@ -15,7 +15,7 @@ public class TypeController {
         this.typeService = typeService;
     }
 
-    @GetMapping("/selecttype")
+    @GetMapping("/recordTypes")
     public Type selecttype(final String typename) {
         return typeService.selecttype(typename);
     }

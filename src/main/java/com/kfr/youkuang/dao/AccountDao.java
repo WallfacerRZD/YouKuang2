@@ -1,5 +1,6 @@
 package com.kfr.youkuang.dao;
 
+import com.kfr.youkuang.Util;
 import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,10 @@ public class AccountDao {
     }
 
     public void insertOneAccount(final Account account){
-        final  int AccountID = account.getAccountID();
-        final  int UserID = account.getUserID();
-        String tableName = UserID+ "_" + AccountID;
-        accountMapper.insertOneAccount(AccountID, UserID);
-        accountMapper.createNewAccountTable(tableName);
+        final  int accountID = account.getAccountID();
+        final  int userID = account.getUserID();
+        accountMapper.insertOneAccount(accountID, userID);
+        accountMapper.createNewAccountTable("UAT"+ userID + "_" + accountID);
     }
 
     public boolean deleteAccount(int delAccountID, int delUserID) {
