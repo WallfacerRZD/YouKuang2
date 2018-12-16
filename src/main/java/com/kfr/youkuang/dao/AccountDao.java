@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -31,8 +32,8 @@ public class AccountDao {
         final String accountName = account.getAccountName();
         final int userID = account.getUserID();
         final BigDecimal sum = account.getSum();
-        final Date lastModifiedTime = account.getLastModifiedTime();
-        final Date createTime = account.getCreatedTime();
+        final Timestamp lastModifiedTime = account.getLastModifiedTime();
+        final Timestamp createTime = account.getCreatedTime();
         accountMapper.insertOneAccount(accountName, userID, sum, lastModifiedTime, createTime);
         int accountID = selectAccountByAccountName(accountName).getAccountID();
         accountMapper.createNewAccountTable("UAT" + userID + "_" + accountID);
@@ -45,12 +46,6 @@ public class AccountDao {
     }
 
     public List<Account> getAllAccountsByUserID(final int userID) {
-        List accountIDs = accountMapper.getaccountsIDbyUserID(userID);
-        List<Account> allAccounts = null;
-        for (int i = 0; i < accountIDs.size(); i++) {
-            Account a = accountMapper.selectAccountByAccountID((Integer) accountIDs.get(i));
-            allAccounts.add(a);
-        }
-        return accountIDs;
+        return accountMapper.getaccountsIDbyUserID(userID);
     }
 }

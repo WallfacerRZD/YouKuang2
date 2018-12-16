@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -17,8 +18,8 @@ public interface AccountMapper {
     void insertOneAccount(@Param("accountName") String accountName,
                           @Param("userID") final int userID,
                           @Param("sum") BigDecimal sum,
-                          @Param("lastModifiedTime") Date lastModifiedTime,
-                          @Param("createdTime") Date createdTime);
+                          @Param("lastModifiedTime") Timestamp lastModifiedTime,
+                          @Param("createdTime") Timestamp createdTime);
 
     @Select("SELECT * FROM account WHERE accountName = #{accountName}")
     Account selectAccountByAccountName(@Param("accountName") final String accountName);
@@ -26,8 +27,8 @@ public interface AccountMapper {
     @Select("SELECT * FROM account WHERE accountID = #{accountID}")
     Account selectAccountByAccountID(@Param("accountID") final int accountID);
 
-    @Select("SELECT accountID FROM account WHERE UserID = #{UserID}")
-    List getaccountsIDbyUserID(@Param("UserID") final int UserID);
+    @Select("SELECT * FROM account WHERE UserID = #{UserID}")
+    List<Account> getaccountsIDbyUserID(@Param("UserID") final int UserID);
 
 
     //存疑 动态建表？
