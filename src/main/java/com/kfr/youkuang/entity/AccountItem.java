@@ -12,13 +12,21 @@ public class AccountItem {
     private Timestamp time;
     private String tip;
 
-    public AccountItem(int iNo, String inOut, BigDecimal money, int typeID, Timestamp time, String tip) {
+    public AccountItem(int iNo, String inOut, BigDecimal money, Timestamp time,int typeID, String tip) {
         this.iNo = iNo;
         this.inOut = inOut;
         this.money = money;
         this.typeID = typeID;
-        this.time = new Timestamp(System.currentTimeMillis());
+        this.time = time;
         this.tip = tip;
+    }
+    public AccountItem(String inOut, BigDecimal money, Timestamp time, int typeID, String tip){
+        this.inOut = inOut;
+        this.money = money;
+        this.typeID = typeID;
+        this.time = time;
+        this.tip = tip;
+
     }
 
     public int getiNo() {

@@ -29,13 +29,13 @@ public class AccountItemService {
     //记一笔
     public ServiceStatus insert(AccountItem accountItem, int accountID, HttpServletRequest request) {
         String tableName = Util.getNewTableName(accountID, request);
-        //try {
+        try {
             accountItemDao.insertItem(accountItem, tableName);
             return new ServiceStatus(ServiceStatus.SUCCEED, "操作成功");
-      //  } catch (Exception e) {
-       //     return new ServiceStatus(ServiceStatus.FAILED, "操作失败");
+        } catch (Exception e) {
+            return new ServiceStatus(ServiceStatus.FAILED, "操作失败");
 
-      //  }
+        }
 
     }
 

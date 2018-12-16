@@ -34,8 +34,6 @@ public class AccountItemDao {
         final Timestamp time = accountItem.getTime();
         final String tip = accountItem.getTip();
         accountItemMapper.insertItem(tableName, inOut, money, type, time, tip);
-        System.out.println(tableName+"_"+money.toString());
-
     }
 
     //修改账本内容
