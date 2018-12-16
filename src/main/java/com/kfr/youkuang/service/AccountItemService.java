@@ -44,21 +44,20 @@ public class AccountItemService {
         String tableName = Util.getNewTableName(accountID, request);
         try {
             accountItemDao.modifyItem(accountItem, tableName);
-            return new ServiceStatus(ServiceStatus.SUCCEED, "操作成功");
+            return new ServiceStatus(ServiceStatus.SUCCEED, "修改成功");
         } catch (Exception e) {
-            return new ServiceStatus(ServiceStatus.FAILED, "操作失败");
+            return new ServiceStatus(ServiceStatus.FAILED, "修改失败");
         }
     }
 
     //删除内容
-    public ServiceStatus delete(AccountItem accountItem, int accountID, HttpServletRequest request) {
+    public ServiceStatus delete(int iNo, int accountID, HttpServletRequest request) {
         String tableName = Util.getNewTableName(accountID, request);
-        int iNo = accountItem.getiNo();
         try {
             accountItemDao.deleteItem(iNo, tableName);
-            return new ServiceStatus(ServiceStatus.SUCCEED, "操作成功");
+            return new ServiceStatus(ServiceStatus.SUCCEED, "删除成功");
         } catch (Exception e) {
-            return new ServiceStatus(ServiceStatus.FAILED, "操作失败");
+            return new ServiceStatus(ServiceStatus.FAILED, "删除失败");
         }
     }
 

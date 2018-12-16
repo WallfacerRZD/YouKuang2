@@ -29,6 +29,18 @@ public class AccountItem {
 
     }
 
+    @Override
+    public String toString() {
+        return "AccountItem{" +
+                "iNo=" + iNo +
+                ", inOut='" + inOut + '\'' +
+                ", money=" + money +
+                ", typeID=" + typeID +
+                ", time=" + time +
+                ", tip='" + tip + '\'' +
+                '}';
+    }
+
     public int getiNo() {
         return iNo;
     }
