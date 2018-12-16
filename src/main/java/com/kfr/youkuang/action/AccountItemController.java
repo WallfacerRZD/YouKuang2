@@ -30,6 +30,8 @@ public class AccountItemController {
     public void insert(@RequestBody AccountItem accountItem,
                        @PathVariable("accountID") int accountID,
                        HttpServletRequest request) {
+
+        System.out.println(accountItem);
         accountItemService.insert(accountItem, accountID, request);
     }
 

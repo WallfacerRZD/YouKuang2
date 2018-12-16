@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -30,9 +31,10 @@ public class AccountItemDao {
         final String inOut = accountItem.getInOut();
         final BigDecimal money = accountItem.getMoney();
         final int type = accountItem.getTypeID();
-        final Date time = accountItem.getTime();
+        final Timestamp time = accountItem.getTime();
         final String tip = accountItem.getTip();
         accountItemMapper.insertItem(tableName, inOut, money, type, time, tip);
+        System.out.println(tableName+"_"+money.toString());
 
     }
 
@@ -42,7 +44,7 @@ public class AccountItemDao {
         final String inOut = accountItem.getInOut();
         final BigDecimal money = accountItem.getMoney();
         final int type = accountItem.getTypeID();
-        final Date time = accountItem.getTime();
+        final Timestamp time = accountItem.getTime();
         final String tip = accountItem.getTip();
         accountItemMapper.modifyItem(tableName, inOut, money, type, time, tip, iNo);
 

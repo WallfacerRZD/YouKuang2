@@ -29,6 +29,7 @@ public class TypeController {
 
     @GetMapping("/recordTypes")
     public List<Type> getAlltype() {
+
         return typeService.getAlltype();
     }
 

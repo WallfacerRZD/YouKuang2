@@ -27,6 +27,6 @@ public class AccountItemMapperTest {
 
     @Test
     public void insertItem() {
-        accountItemMapper.insertItem(test_table,"支出",testMoney,001,testDate,"测试");
+        //accountItemMapper.insertItem(test_table,"支出",testMoney,001,testDate,"测试");
     }
 }

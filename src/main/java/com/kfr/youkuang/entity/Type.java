@@ -4,9 +4,9 @@ public class Type {
     private int typeID;
     private String type;
 
-    public Type(String type) {
+    public Type(int typeID, String type) {
+        this.typeID = typeID;
         this.type = type;
-        //存疑 id？？？
     }
 
     public String getType() {
@@ -21,7 +21,5 @@ public class Type {
         this.type = type;
     }
 
-    public void setTypeID(int typeID) {
-        //存疑
-    }
+    public void setTypeID(int typeID) {this.typeID = typeID; }
 }

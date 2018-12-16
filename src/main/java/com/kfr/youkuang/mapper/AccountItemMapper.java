@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -23,7 +24,7 @@ public interface AccountItemMapper {
                     @Param("inOut") final String inOut,
                     @Param("money") final BigDecimal money,
                     @Param("type") final int type,
-                    @Param("time") final Date time,
+                    @Param("time") final Timestamp time,
                     @Param("tip") final String tip
     );
 
@@ -33,7 +34,7 @@ public interface AccountItemMapper {
                     @Param("inOut") final String inOut,
                     @Param("money") final BigDecimal money,
                     @Param("type") final int type,
-                    @Param("time") final Date time,
+                    @Param("time") final Timestamp time,
                     @Param("tip") final String tip,
                     @Param("iNo") final int iNo);
 
