@@ -42,13 +42,13 @@ public class AccountController {
     }
 
     @PostMapping("/account}")  //存疑
-    public ServiceStatus createAccount(final String AccountName, final HttpServletRequest request){
-        return  accountService.createAccount(new Account(AccountName, (int)request.getSession().getAttribute("userID")));
+    public ServiceStatus createAccount(final String AccountName, final HttpServletRequest request) {
+        return accountService.createAccount(new Account(AccountName, (int) request.getSession().getAttribute("userID")));
     }
 
-    @DeleteMapping("/account/{accountID}")
-    public ServiceStatus deleteAccount(final Account account){
-        return  accountService.deleteAccount(account);
+  /*  @DeleteMapping("/account/{accountID}")
+    public ServiceStatus deleteAccount(final Account account) {
+        return accountService.deleteAccount(account);
 
-    }
+    }*/
 }

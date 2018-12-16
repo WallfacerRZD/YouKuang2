@@ -12,6 +12,7 @@ public class Type {
     public String getType() {
         return type;
     }
+
     public int getTypeID() {
         return typeID;
     }
@@ -19,6 +20,7 @@ public class Type {
     public void setType(String type) {
         this.type = type;
     }
+
     public void setTypeID(int typeID) {
         //存疑
     }

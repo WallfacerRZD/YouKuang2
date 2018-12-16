@@ -34,10 +34,14 @@ public class UserController {
         return userService.login(new User(userName, password), request);
     }
 
-    //HttpservletSession??
+    @GetMapping("logout")
+    public ServiceStatus logout(final HttpServletRequest request) {
+        return userService.logout(request);
+    }
+
     @GetMapping("/userInfo")
-    public User userInfo(HttpServletRequest request){
-        int queryUserID = (int)request.getSession().getAttribute("userId");
+    public User userInfo(HttpServletRequest request) {
+        int queryUserID = (int) request.getSession().getAttribute("userId");
         return userService.selectUserByUserID(queryUserID);
 
     }

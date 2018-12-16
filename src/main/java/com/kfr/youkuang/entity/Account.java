@@ -1,26 +1,26 @@
 package com.kfr.youkuang.entity;
 
+import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class Account {
     private String accountName;
     private int accountID;
     private String userName;
     private int userID;
-    private double sum;
-    private long lastModifiedTime;
-    private long createdTime;
+    private BigDecimal sum;
+    private Date lastModifiedTime;
+    private Date createdTime;
     private String tablename;
 
     public Account(String AccountName, int userID) {
 
         this.accountName = AccountName;
         this.userID = userID;
-        sum = 0;
+        sum = new BigDecimal(0);
         tablename = userID + "_" + accountID;
-        lastModifiedTime = System.currentTimeMillis();
-        createdTime = System.currentTimeMillis();
+        lastModifiedTime = new Date(System.currentTimeMillis());
+        createdTime = new Date(System.currentTimeMillis());
     }
 
     @Override
@@ -47,15 +47,15 @@ public class Account {
         return userID;
     }
 
-    public long getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public long getLastModifiedTime() {
+    public Date getLastModifiedTime() {
         return lastModifiedTime;
     }
 
-    public double getSum() {
+    public BigDecimal getSum() {
         return sum;
     }
 

@@ -18,7 +18,6 @@ public class AccountMapperTest {
 
     @Test
     public void insertOneAccount() {
-        accountMapper.insertOneAccount(5,1);
     }
 
     @Test
@@ -31,7 +30,7 @@ public class AccountMapperTest {
 
     @Test
     public void createNewAccountTable() {
-        accountMapper.createNewAccountTable(test_table);
+
     }
 
     @Test

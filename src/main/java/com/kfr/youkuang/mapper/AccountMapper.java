@@ -4,6 +4,8 @@ import com.kfr.youkuang.entity.Account;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.List;
 
 @Mapper
@@ -11,12 +13,12 @@ import java.util.List;
 public interface AccountMapper {
 
     @Insert("INSERT INTO account(accountID, userID) values(#{accountID}, #{accountName}, #{userID}, #{sum}), #{lastModifiedTime}, #{createTime}")
-    void  insertOneAccount(@Param("accountID") final int accountID,
-                           @Param("accountName") String accountName,
-                           @Param("userID") final int userID,
-                           @Param("sum") int sum,
-                           @Param("lastModifiedTime") long lastModifiedTime,
-                           @Param("createTime") long createTime);
+    void insertOneAccount(@Param("accountID") final int accountID,
+                          @Param("accountName") String accountName,
+                          @Param("userID") final int userID,
+                          @Param("sum") BigDecimal sum,
+                          @Param("lastModifiedTime") Date lastModifiedTime,
+                          @Param("createTime") Date createTime);
 
     @Select("SELECT * FROM account WHERE accountName = #{accountName}")
     Account selectAccountByAccountName(@Param("accountName") final String accountName);
@@ -29,12 +31,12 @@ public interface AccountMapper {
 
 
     //存疑 动态建表？
-    void createNewAccountTable(@Param("tableName")String tableName);
+    void createNewAccountTable(@Param("tableName") String tableName);
 
     //删account的表里面一行的记录
     @Delete("DELETE FROM account WHERE accountID =  #{accountID} AND UserID =  #{UserID}")
-    boolean deleteAccount(@Param("accountID")int accountID, @Param("UserID")int UserID);
+    boolean deleteAccount(@Param("accountID") int accountID, @Param("UserID") int UserID);
 
     //删表
-    boolean dropAccountTable(@Param("tableName")String tableName);
+    boolean dropAccountTable(@Param("tableName") String tableName);
 }

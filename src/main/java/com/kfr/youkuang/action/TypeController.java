@@ -17,7 +17,7 @@ public class TypeController {
         this.typeService = typeService;
     }
 
-    @GetMapping("/recordTypes")
+/*    @GetMapping("/recordTypes")
     public Type selecttypeByID(final int tID) {
         return typeService.selecttypeByID(tID);
     }
@@ -25,7 +25,7 @@ public class TypeController {
     @GetMapping("/recordTypes")
     public Type selecttypeByName(final String typename) {
         return typeService.selecttypeByName(typename);
-    }
+    }*/
 
     @GetMapping("/recordTypes")
     public List<Type> getAlltype() {

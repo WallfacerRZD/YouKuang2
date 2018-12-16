@@ -25,7 +25,8 @@ public interface AccountItemMapper {
                     @Param("type") final int type,
                     @Param("time") final Date time,
                     @Param("tip") final String tip
-                    );
+    );
+
     @Update("UPDATE ${tableName} SET inOut=#{inOut}, money=#{money}, typeID= #{type}," +
             "time=#{time}, tip=#{tip} WHERE iNo=#{iNo}")
     void modifyItem(@Param("tableName") final String tableName,

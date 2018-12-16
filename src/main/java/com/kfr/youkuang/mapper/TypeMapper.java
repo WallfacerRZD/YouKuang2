@@ -15,7 +15,7 @@ public interface TypeMapper {
     Type selectType(@Param("typeName") final String typeName);
 
     @Select("SELECT * FROM type where typeID = #{tID}")
-    Type selecttypeByID(@Param("tID")int tID);
+    Type selecttypeByID(@Param("tID") int tID);
 
     @Select("SELECT * FROM type")
     List<Type> getAlltype();
