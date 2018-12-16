@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 拦截重复登录
         if (LOGIN_URL.equals(httpServletRequest.getRequestURI())) {
             if (ok) {
-                httpServletResponse.sendRedirect("/index");
+                //httpServletResponse.sendRedirect("/index");
                 return false;
             } else {
                 return true;
@@ -28,7 +28,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             if (ok) {
                 return true;
             } else {
-                httpServletResponse.sendRedirect("/login");
+                //httpServletResponse.sendRedirect("/login");
                 return false;
             }
         }

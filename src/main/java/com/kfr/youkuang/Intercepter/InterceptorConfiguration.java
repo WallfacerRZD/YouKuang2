@@ -11,6 +11,6 @@ public class InterceptorConfiguration extends WebMvcConfigurerAdapter {
         registry.addInterceptor(new LoginInterceptor())
                 // 拦截除了登录页面和js, css库之外的所有URL
                 .addPathPatterns("/**")
-                .excludePathPatterns("/index", "/jslib/**", "/styles/**");
+                .excludePathPatterns("/register", "/login");
     }
 }

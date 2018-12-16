@@ -28,13 +28,13 @@ public class AccountDao {
     }
 
     public void insertOneAccount(final Account account) {
-        final int accountID = account.getAccountID();
         final String accountName = account.getAccountName();
         final int userID = account.getUserID();
         final BigDecimal sum = account.getSum();
         final Date lastModifiedTime = account.getLastModifiedTime();
         final Date createTime = account.getCreatedTime();
-        accountMapper.insertOneAccount(accountID, accountName, userID, sum, lastModifiedTime, createTime);
+        accountMapper.insertOneAccount(accountName, userID, sum, lastModifiedTime, createTime);
+        int accountID = selectAccountByAccountName(accountName).getAccountID();
         accountMapper.createNewAccountTable("UAT" + userID + "_" + accountID);
     }
 

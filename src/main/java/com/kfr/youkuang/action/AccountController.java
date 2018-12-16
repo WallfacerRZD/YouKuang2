@@ -41,7 +41,7 @@ public class AccountController {
         return accountService.getAllAccountsByUserID(Integer.valueOf(userID));
     }
 
-    @PostMapping("/account}")  //存疑
+    @PostMapping("/account")
     public ServiceStatus createAccount(final String AccountName, final HttpServletRequest request) {
         return accountService.createAccount(new Account(AccountName, (int) request.getSession().getAttribute("userID")));
     }

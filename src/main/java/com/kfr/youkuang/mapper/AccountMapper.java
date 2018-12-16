@@ -12,13 +12,13 @@ import java.util.List;
 @Component
 public interface AccountMapper {
 
-    @Insert("INSERT INTO account(accountID, userID) values(#{accountID}, #{accountName}, #{userID}, #{sum}), #{lastModifiedTime}, #{createTime}")
-    void insertOneAccount(@Param("accountID") final int accountID,
-                          @Param("accountName") String accountName,
+    @Insert("INSERT INTO account(accountName,userID,sum,lastModifiedTime,createdTime) " +
+            "values(#{accountName}, #{userID}, #{sum}, #{lastModifiedTime}, #{createdTime})")
+    void insertOneAccount(@Param("accountName") String accountName,
                           @Param("userID") final int userID,
                           @Param("sum") BigDecimal sum,
                           @Param("lastModifiedTime") Date lastModifiedTime,
-                          @Param("createTime") Date createTime);
+                          @Param("createdTime") Date createdTime);
 
     @Select("SELECT * FROM account WHERE accountName = #{accountName}")
     Account selectAccountByAccountName(@Param("accountName") final String accountName);

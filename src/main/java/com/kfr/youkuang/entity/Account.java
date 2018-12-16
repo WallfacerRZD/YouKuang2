@@ -13,6 +13,17 @@ public class Account {
     private Date createdTime;
     private String tablename;
 
+    public Account(String accountName, int accountID, String userName, int userID, BigDecimal sum, Date lastModifiedTime, Date createdTime, String tablename) {
+        this.accountName = accountName;
+        this.accountID = accountID;
+        this.userName = userName;
+        this.userID = userID;
+        this.sum = sum;
+        this.lastModifiedTime = lastModifiedTime;
+        this.createdTime = createdTime;
+        this.tablename = tablename;
+    }
+
     public Account(String AccountName, int userID) {
 
         this.accountName = AccountName;

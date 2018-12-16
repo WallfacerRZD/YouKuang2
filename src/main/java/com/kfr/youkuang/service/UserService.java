@@ -36,8 +36,8 @@ public class UserService {
         if (selectedUser == null) {
             userDao.insertOneUser(newUser);//新建用户
             //注册后新建默认账本
-            int userID = selectUserByUserName(newUserName).getUserID();
-            accountDao.insertOneAccount(new Account("默认账本", userID));
+           int userID = selectUserByUserName(newUserName).getUserID();
+            //accountDao.insertOneAccount(new Account("默认账本", userID));
             return new ServiceStatus(ServiceStatus.SUCCEED, "注册成功");
         } else {
             return new ServiceStatus(ServiceStatus.FAILED, "账号已被注册");

@@ -25,8 +25,8 @@ public class AccountService {
     }
 
     public ServiceStatus createAccount(final Account newAccount) {
-        final int newAccountID = newAccount.getAccountID();
-        Account selectedAccount = accountDao.selectAccountByAccountID(newAccountID);
+        final String newAccountName = newAccount.getAccountName();
+        Account selectedAccount = accountDao.selectAccountByAccountName(newAccountName);
         if (selectedAccount == null) {
             accountDao.insertOneAccount(newAccount);
             return new ServiceStatus(ServiceStatus.SUCCEED, "创建账本成功"); //是否用UserServiceStatus？
