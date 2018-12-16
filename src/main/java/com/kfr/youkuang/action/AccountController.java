@@ -37,13 +37,13 @@ public class AccountController {
             未登录的请求会被拦截器拦截(现在不管, 最后再配置), 不会进入该方法
             所以session.getAttribute("userID")一定会返回该登录用户的userID
          */
-        final String userID = (String) session.getAttribute("userID");
-        return accountService.getAllAccountsByUserID(Integer.valueOf(userID));
+        final int userID = (int)session.getAttribute("userID");
+        return accountService.getAllAccountsByUserID(userID);
     }
 
     @PostMapping("/account")
-    public ServiceStatus createAccount(final String AccountName, final HttpServletRequest request) {
-        return accountService.createAccount(new Account(AccountName, (int) request.getSession().getAttribute("userID")));
+    public ServiceStatus createAccount(final String accountName, final HttpServletRequest request) {
+        return accountService.createAccount(new Account(accountName, (int) request.getSession().getAttribute("userID")));
     }
 
   /*  @DeleteMapping("/account/{accountID}")
