@@ -13,7 +13,7 @@ public class Account {
     private Date createdTime;
     private String tablename;
 
-    public Account(String accountName, int accountID, String userName, int userID, BigDecimal sum, Date lastModifiedTime, Date createdTime, String tablename) {
+    public Account(String accountName, int accountID, String userName, int userID, BigDecimal sum, Date lastModifiedTime, Date createdTime) {
         this.accountName = accountName;
         this.accountID = accountID;
         this.userName = userName;
@@ -21,7 +21,6 @@ public class Account {
         this.sum = sum;
         this.lastModifiedTime = lastModifiedTime;
         this.createdTime = createdTime;
-        this.tablename = tablename;
     }
 
     public Account(String AccountName, int userID) {
@@ -37,8 +36,13 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "UserName='" + userName + '\'' +
-                ", AccountName='" + accountName + '\'' +
+                "accountName='" + accountName + '\'' +
+                ", accountID=" + accountID +
+                ", userName='" + userName + '\'' +
+                ", userID=" + userID +
+                ", sum=" + sum +
+                ", lastModifiedTime=" + lastModifiedTime +
+                ", createdTime=" + createdTime +
                 '}';
     }
 
@@ -70,11 +74,4 @@ public class Account {
         return sum;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
-    public String getTablename() {
-        return tablename;
-    }
 }

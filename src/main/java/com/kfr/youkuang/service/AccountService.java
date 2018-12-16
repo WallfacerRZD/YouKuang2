@@ -28,7 +28,9 @@ public class AccountService {
         final String newAccountName = newAccount.getAccountName();
         Account selectedAccount = accountDao.selectAccountByAccountName(newAccountName);
         if (selectedAccount == null) {
+            System.out.println(newAccount);
             accountDao.insertOneAccount(newAccount);
+
             return new ServiceStatus(ServiceStatus.SUCCEED, "创建账本成功"); //是否用UserServiceStatus？
         } else {
             return new ServiceStatus(ServiceStatus.FAILED, "账本名已存在");
