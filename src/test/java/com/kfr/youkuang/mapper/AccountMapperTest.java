@@ -9,13 +9,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AccountMapperTest {
+
     @Autowired
     private AccountMapper accountMapper;
-    public String test_table = "A_1_2";
 
     @Test
     public void insertOneAccount() {

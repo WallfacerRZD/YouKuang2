@@ -10,9 +10,13 @@ import java.util.List;
 @Component
 public interface AccountMapper {
 
-    @Insert("INSERT INTO account(accountID, userID) values(#{accountID}, #{userID})")
+    @Insert("INSERT INTO account(accountID, userID) values(#{accountID}, #{accountName}, #{userID}, #{sum}), #{lastModifiedTime}, #{createTime}")
     void  insertOneAccount(@Param("accountID") final int accountID,
-                           @Param("userID") final int userID);
+                           @Param("accountName") String accountName,
+                           @Param("userID") final int userID,
+                           @Param("sum") int sum,
+                           @Param("lastModifiedTime") long lastModifiedTime,
+                           @Param("createTime") long createTime);
 
     @Select("SELECT * FROM account WHERE accountName = #{accountName}")
     Account selectAccountByAccountName(@Param("accountName") final String accountName);

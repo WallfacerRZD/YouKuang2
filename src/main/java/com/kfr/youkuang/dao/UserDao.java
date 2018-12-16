@@ -34,5 +34,7 @@ public class UserDao {
         userMapper.insertOneUser(userName, password);
     }
 
-
+    public User selectUserByUserID(final int userID) {
+        return userMapper.selectUserByUserID(userID);
+    }
 }

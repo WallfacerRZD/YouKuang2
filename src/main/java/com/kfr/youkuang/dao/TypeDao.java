@@ -4,6 +4,8 @@ import com.kfr.youkuang.entity.Type;
 import com.kfr.youkuang.mapper.TypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class TypeDao {
     private final TypeMapper typeMapper;
 
@@ -15,5 +17,14 @@ public class TypeDao {
     public Type selectType(final String typename){
         return typeMapper.selectType(typename);
     }
+
+    public Type selecttypeByID(int tID) {
+        return typeMapper.selecttypeByID(tID);
+    }
+
+    public List<Type> getAlltype() {
+        return typeMapper.getAlltype();
+    }
+
 
 }

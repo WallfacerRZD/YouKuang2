@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
+
+        <mapper resource="mybatis/CityMapper.xml"/>
+</mapper>
+
 <!-- 对应 Account 还是 AccountItem？ -->
 
 <mapper namespace="com.kfr.youkuang.mapper.AccountMapper">
