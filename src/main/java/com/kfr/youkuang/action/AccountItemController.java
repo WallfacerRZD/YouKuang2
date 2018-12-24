@@ -34,7 +34,7 @@ public class AccountItemController {
                                 String inOut,
                                 BigDecimal money,
                                 String time,
-                                int type,
+                                Integer type,
                                 String tip,
                                 HttpServletRequest request) {
         long transtime = Long.parseLong(time);
@@ -54,7 +54,7 @@ public class AccountItemController {
                         HttpServletRequest request) {
         long transTime = Long.parseLong(time);
         int iNo = Integer.valueOf(accountItemID).intValue();
-        AccountItem accountItem = new AccountItem(iNo,inOut,money,new Timestamp(transTime),type,tip);
+        AccountItem accountItem = new AccountItem(iNo,inOut,money,type,new Timestamp(transTime),tip);
         return accountItemService.modify(accountItem, accountID, request);
     }
 
