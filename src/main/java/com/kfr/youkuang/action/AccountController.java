@@ -44,9 +44,7 @@ public class AccountController {
     @PostMapping("/account")
     public ServiceStatus createAccount(final String accountName, final HttpServletRequest request) {
 
-        final HttpSession session = request.getSession();
-        final int userID = (int)session.getAttribute("userID");
-        return accountService.createAccount(new Account(accountName + userID, (int) request.getSession().getAttribute("userID")));
+        return accountService.createAccount(new Account(accountName, (int) request.getSession().getAttribute("userID")));
     }
 
   /*  @DeleteMapping("/account/{accountID}")

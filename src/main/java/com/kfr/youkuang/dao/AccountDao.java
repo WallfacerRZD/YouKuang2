@@ -20,8 +20,8 @@ public class AccountDao {
         this.accountMapper = accountMapper;
     }
 
-    public Account selectAccountByAccountName(final String AccountName) {
-        return accountMapper.selectAccountByAccountName(AccountName);
+    public Account selectAccountByAccountName(final String AccountName,final int userID) {
+        return accountMapper.selectAccountByAccountName(AccountName,userID);
     }
 
     public Account selectAccountByAccountID(final int AccountID) {
@@ -36,7 +36,7 @@ public class AccountDao {
         final Timestamp createTime = account.getCreatedTime();
         accountMapper.insertOneAccount(accountName, userID, sum, lastModifiedTime, createTime);
         // todo selectAccountByAccountName() 注册多个用户时会报错
-        int accountID = selectAccountByAccountName(accountName).getAccountID();
+        int accountID = selectAccountByAccountName(accountName,userID).getAccountID();
         accountMapper.createNewAccountTable("UAT" + userID + "_" + accountID);
     }
 

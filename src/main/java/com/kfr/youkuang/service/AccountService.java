@@ -26,7 +26,7 @@ public class AccountService {
 
     public ServiceStatus createAccount(final Account newAccount) {
         final String newAccountName = newAccount.getAccountName();
-        Account selectedAccount = accountDao.selectAccountByAccountName(newAccountName);
+        Account selectedAccount = accountDao.selectAccountByAccountName(newAccountName,newAccount.getUserID());
         if (selectedAccount == null) {
             System.out.println(newAccount);
             accountDao.insertOneAccount(newAccount);

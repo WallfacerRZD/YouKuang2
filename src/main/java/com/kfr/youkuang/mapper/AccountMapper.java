@@ -21,8 +21,9 @@ public interface AccountMapper {
                           @Param("lastModifiedTime") Timestamp lastModifiedTime,
                           @Param("createdTime") Timestamp createdTime);
 
-    @Select("SELECT * FROM account WHERE accountName = #{accountName}")
-    Account selectAccountByAccountName(@Param("accountName") final String accountName);
+    @Select("SELECT * FROM account WHERE accountName = #{accountName} AND userID = #{userID}")
+    Account selectAccountByAccountName(@Param("accountName") final String accountName,
+                                       @Param("userID") final int userID);
 
     @Select("SELECT * FROM account WHERE accountID = #{accountID}")
     Account selectAccountByAccountID(@Param("accountID") final int accountID);
