@@ -12,7 +12,7 @@ public class AccountItem {
     private Timestamp time;
     private String tip;
 
-    public AccountItem(int iNo, String inOut, BigDecimal money, Timestamp time,int typeID, String tip) {
+    public AccountItem(int iNo, String inOut, BigDecimal money, int typeID, Timestamp time, String tip) {
         this.iNo = iNo;
         this.inOut = inOut;
         this.money = money;

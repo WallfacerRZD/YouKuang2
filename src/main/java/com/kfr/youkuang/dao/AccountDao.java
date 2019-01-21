@@ -35,6 +35,7 @@ public class AccountDao {
         final Timestamp lastModifiedTime = account.getLastModifiedTime();
         final Timestamp createTime = account.getCreatedTime();
         accountMapper.insertOneAccount(accountName, userID, sum, lastModifiedTime, createTime);
+        // todo selectAccountByAccountName() 注册多个用户时会报错
         int accountID = selectAccountByAccountName(accountName).getAccountID();
         accountMapper.createNewAccountTable("UAT" + userID + "_" + accountID);
     }
