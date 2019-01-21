@@ -1,6 +1,9 @@
 package com.kfr.youkuang.action;
 
+import com.kfr.youkuang.Util;
 import com.kfr.youkuang.entity.User;
+import com.kfr.youkuang.pojo.LoginRequest;
+import com.kfr.youkuang.pojo.RegisterRequest;
 import com.kfr.youkuang.service.ServiceStatus;
 import com.kfr.youkuang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +26,14 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public ServiceStatus register(final String userName, final String password) {
-        return userService.register(new User(userName, password));
+    public ServiceStatus register(final RegisterRequest registerRequest) {
+        return userService.register(registerRequest);
     }
 
     @GetMapping("/login")
-    public ServiceStatus login(final String userName,
-                               final String password,
+    public ServiceStatus login(final LoginRequest loginRequest,
                                final HttpServletRequest request) {
-        return userService.login(new User(userName, password), request);
+        return userService.login(loginRequest, request);
     }
 
     @GetMapping("/logout")
@@ -41,8 +43,7 @@ public class UserController {
 
     @GetMapping("/userInfo")
     public User userInfo(HttpServletRequest request) {
-        int queryUserID = (int) request.getSession().getAttribute("userID");
-        return userService.selectUserByUserID(queryUserID);
+        return userService.selectUserByUserID(Util.getUserID(request));
 
     }
 

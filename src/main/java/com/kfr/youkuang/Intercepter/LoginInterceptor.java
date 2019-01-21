@@ -18,19 +18,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         // 拦截重复登录
         if (LOGIN_URL.equals(httpServletRequest.getRequestURI())) {
-            if (ok) {
-                //httpServletResponse.sendRedirect("/index");
-                return false;
-            } else {
-                return true;
-            }
+            return !ok;
         } else {
-            if (ok) {
-                return true;
-            } else {
-                //httpServletResponse.sendRedirect("/login");
-                return false;
-            }
+            //httpServletResponse.sendRedirect("/login");
+            return ok;
         }
     }
 

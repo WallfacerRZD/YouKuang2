@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 public class TypeDao {
     private final TypeMapper typeMapper;
@@ -19,12 +20,12 @@ public class TypeDao {
         return typeMapper.selectType(typename);
     }
 
-    public Type selecttypeByID(int tID) {
-        return typeMapper.selecttypeByID(tID);
+    public Type selectTypeByID(int tID) {
+        return typeMapper.selectTypeByID(tID);
     }
 
-    public List<Type> getAlltype() {
-        return typeMapper.getAlltype();
+    public List<Type> getAllType() {
+        return typeMapper.getAllType();
     }
 
 

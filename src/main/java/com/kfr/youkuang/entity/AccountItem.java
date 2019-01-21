@@ -1,7 +1,6 @@
 package com.kfr.youkuang.entity;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class AccountItem {
@@ -19,14 +18,6 @@ public class AccountItem {
         this.typeID = typeID;
         this.time = time;
         this.tip = tip;
-    }
-    public AccountItem(String inOut, BigDecimal money, Timestamp time, int typeID, String tip){
-        this.inOut = inOut;
-        this.money = money;
-        this.typeID = typeID;
-        this.time = time;
-        this.tip = tip;
-
     }
 
     @Override

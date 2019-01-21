@@ -3,6 +3,8 @@ package com.kfr.youkuang.service;
 import com.kfr.youkuang.Util;
 import com.kfr.youkuang.dao.AccountItemDao;
 import com.kfr.youkuang.entity.AccountItem;
+import com.kfr.youkuang.pojo.InsertItemRequest;
+import com.kfr.youkuang.pojo.ModifyItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +29,10 @@ public class AccountItemService {
     }
 
     //记一笔
-    public ServiceStatus insert(AccountItem accountItem, int accountID, HttpServletRequest request) {
+    public ServiceStatus insert(InsertItemRequest insertItemRequest, int accountID, HttpServletRequest request) {
         String tableName = Util.getNewTableName(accountID, request);
         try {
-            accountItemDao.insertItem(accountItem, tableName);
+            accountItemDao.insertItem(insertItemRequest, tableName);
             return new ServiceStatus(ServiceStatus.SUCCEED, "操作成功");
         } catch (Exception e) {
             return new ServiceStatus(ServiceStatus.FAILED, "操作失败");
@@ -40,10 +42,10 @@ public class AccountItemService {
     }
 
     //修改账本内容
-    public ServiceStatus modify(AccountItem accountItem, int accountID, HttpServletRequest request) {
+    public ServiceStatus modify(ModifyItemRequest modifyItemRequest, int accountID, HttpServletRequest request) {
         String tableName = Util.getNewTableName(accountID, request);
         try {
-            accountItemDao.modifyItem(accountItem, tableName);
+            accountItemDao.modifyItem(modifyItemRequest, tableName);
             return new ServiceStatus(ServiceStatus.SUCCEED, "修改成功");
         } catch (Exception e) {
             return new ServiceStatus(ServiceStatus.FAILED, "修改失败");

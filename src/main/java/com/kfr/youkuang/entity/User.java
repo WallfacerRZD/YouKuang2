@@ -17,11 +17,6 @@ public class User {
         this.password = password;
     }
 
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         return "User{" + "userID='" + userID + '\'' +

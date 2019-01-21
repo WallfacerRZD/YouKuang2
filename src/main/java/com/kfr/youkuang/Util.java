@@ -11,9 +11,7 @@ public class Util {
     }
 
     public static String getNewTableName(int accountID, HttpServletRequest request) {
-        final HttpSession session = request.getSession();
-        final int userID = (int) session.getAttribute("userID");
-        return "UAT" + userID + "_" + accountID;
+        return "UAT" + getUserID(request) + "_" + accountID;
     }
 
 }

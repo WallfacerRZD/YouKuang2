@@ -1,10 +1,13 @@
 package com.kfr.youkuang.service;
 
+import com.kfr.youkuang.Util;
 import com.kfr.youkuang.dao.AccountDao;
 import com.kfr.youkuang.entity.Account;
+import com.kfr.youkuang.pojo.CreateAccountRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -24,14 +27,14 @@ public class AccountService {
         return accountDao.getAllAccountsByUserID(userID);
     }
 
-    public ServiceStatus createAccount(final Account newAccount) {
-        final String newAccountName = newAccount.getAccountName();
-        Account selectedAccount = accountDao.selectAccountByAccountName(newAccountName,newAccount.getUserID());
+    public ServiceStatus createAccount(final CreateAccountRequest createAccountRequest,
+                                       final HttpServletRequest request) {
+        final String newAccountName = createAccountRequest.getAccountName();
+        final int userID = Util.getUserID(request);
+        Account selectedAccount = accountDao.selectAccountByAccountName(newAccountName, userID);
         if (selectedAccount == null) {
-            System.out.println(newAccount);
-            accountDao.insertOneAccount(newAccount);
-
-            return new ServiceStatus(ServiceStatus.SUCCEED, "创建账本成功"); //是否用UserServiceStatus？
+            accountDao.insertOneAccount(createAccountRequest, userID);
+            return new ServiceStatus(ServiceStatus.SUCCEED, "创建账本成功");
         } else {
             return new ServiceStatus(ServiceStatus.FAILED, "账本名已存在");
         }

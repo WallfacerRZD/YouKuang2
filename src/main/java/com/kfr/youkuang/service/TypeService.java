@@ -16,15 +16,15 @@ public class TypeService {
         this.typeDao = typeDao;
     }
 
-    public Type selecttypeByName(String typename) {
+    public Type selectTypeByName(String typename) {
         return typeDao.selectType(typename);
     }
 
-    public Type selecttypeByID(int tID) {
-        return typeDao.selecttypeByID(tID);
+    public Type selectTypeByID(int tID) {
+        return typeDao.selectTypeByID(tID);
     }
 
-    public List<Type> getAlltype() {
-        return typeDao.getAlltype();
+    public List<Type> getAllType() {
+        return typeDao.getAllType();
     }
 }

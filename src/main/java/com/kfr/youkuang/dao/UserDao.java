@@ -26,11 +26,7 @@ public class UserDao {
         return userMapper.selectUserByUserID(userID);
     }
 
-    public void insertOneUser(final User user) {
-        final String userName = user.getUserName();
-        final String password = user.getPassword();
-        System.out.println(userName);
-        System.out.println(password);
+    public void insertOneUser(final String userName, final String password) {
         userMapper.insertOneUser(userName, password);
     }
 

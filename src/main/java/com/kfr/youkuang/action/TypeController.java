@@ -18,19 +18,19 @@ public class TypeController {
     }
 
 /*    @GetMapping("/recordTypes")
-    public Type selecttypeByID(final int tID) {
-        return typeService.selecttypeByID(tID);
+    public Type selectTypeByID(final int tID) {
+        return typeService.selectTypeByID(tID);
     }
 
     @GetMapping("/recordTypes")
-    public Type selecttypeByName(final String typename) {
-        return typeService.selecttypeByName(typename);
+    public Type selectTypeByName(final String typename) {
+        return typeService.selectTypeByName(typename);
     }*/
 
     @GetMapping("/recordTypes")
-    public List<Type> getAlltype() {
+    public List<Type> getAllType() {
 
-        return typeService.getAlltype();
+        return typeService.getAllType();
     }
 
 }

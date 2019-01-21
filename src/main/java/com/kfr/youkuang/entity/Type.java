@@ -13,13 +13,15 @@ public class Type {
         return type;
     }
 
-    public int getTypeID() {
-        return typeID;
-    }
-
     public void setType(String type) {
         this.type = type;
     }
 
-    public void setTypeID(int typeID) {this.typeID = typeID; }
+    public int getTypeID() {
+        return typeID;
+    }
+
+    public void setTypeID(int typeID) {
+        this.typeID = typeID;
+    }
 }

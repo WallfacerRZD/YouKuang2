@@ -2,11 +2,11 @@ package com.kfr.youkuang.dao;
 
 import com.kfr.youkuang.entity.AccountItem;
 import com.kfr.youkuang.mapper.AccountItemMapper;
+import com.kfr.youkuang.pojo.InsertItemRequest;
+import com.kfr.youkuang.pojo.ModifyItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -27,26 +27,24 @@ public class AccountItemDao {
     }
 
     //记一笔
-    public void insertItem(AccountItem accountItem, String tableName) {
-        final String inOut = accountItem.getInOut();
-        final BigDecimal money = accountItem.getMoney();
-        final int type = accountItem.getTypeID();
-        final Timestamp time = accountItem.getTime();
-        final String tip = accountItem.getTip();
-        accountItemMapper.insertItem(tableName, inOut, money, type, time, tip);
+    public void insertItem(InsertItemRequest insertItemRequest, String tableName) {
+        accountItemMapper.insertItem(tableName,
+                                     insertItemRequest.getInOut(),
+                                     insertItemRequest.getMoney(),
+                                     insertItemRequest.getType(),
+                                     new Timestamp(insertItemRequest.getTime()),
+                                     insertItemRequest.getTip());
     }
 
     //修改账本内容
-    public void modifyItem(AccountItem accountItem, String tableName) {
-        final int iNo = accountItem.getiNo();
-        final String inOut = accountItem.getInOut();
-        final BigDecimal money = accountItem.getMoney();
-        final int type = accountItem.getTypeID();
-        final Timestamp time = accountItem.getTime();
-        final String tip = accountItem.getTip();
-        accountItemMapper.modifyItem(tableName, inOut, money, type, time, tip, iNo);
-
-
+    public void modifyItem(ModifyItemRequest modifyItemRequest, String tableName) {
+        accountItemMapper.modifyItem(tableName,
+                                     modifyItemRequest.getInOut(),
+                                     modifyItemRequest.getMoney(),
+                                     modifyItemRequest.getType(),
+                                     new Timestamp(modifyItemRequest.getTime()),
+                                     modifyItemRequest.getTip(),
+                                     modifyItemRequest.getAccountItemID());
     }
 
     //删除内容

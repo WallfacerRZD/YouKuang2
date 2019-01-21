@@ -2,12 +2,10 @@ package com.kfr.youkuang.dao;
 
 import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.mapper.AccountMapper;
+import com.kfr.youkuang.pojo.CreateAccountRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -20,23 +18,22 @@ public class AccountDao {
         this.accountMapper = accountMapper;
     }
 
-    public Account selectAccountByAccountName(final String AccountName,final int userID) {
-        return accountMapper.selectAccountByAccountName(AccountName,userID);
+    public Account selectAccountByAccountName(final String accountName, final int userID) {
+        return accountMapper.selectAccountByAccountName(accountName, userID);
     }
 
-    public Account selectAccountByAccountID(final int AccountID) {
-        return accountMapper.selectAccountByAccountID(AccountID);
+    public Account selectAccountByAccountID(final int accountID) {
+        return accountMapper.selectAccountByAccountID(accountID);
     }
 
-    public void insertOneAccount(final Account account) {
-        final String accountName = account.getAccountName();
-        final int userID = account.getUserID();
-        final BigDecimal sum = account.getSum();
-        final Timestamp lastModifiedTime = account.getLastModifiedTime();
-        final Timestamp createTime = account.getCreatedTime();
-        accountMapper.insertOneAccount(accountName, userID, sum, lastModifiedTime, createTime);
-        // todo selectAccountByAccountName() 注册多个用户时会报错
-        int accountID = selectAccountByAccountName(accountName,userID).getAccountID();
+    public void insertOneAccount(final CreateAccountRequest createAccountRequest, final int userID) {
+        final String accountName = createAccountRequest.getAccountName();
+        accountMapper.insertOneAccount(createAccountRequest.getAccountName(),
+                                       userID,
+                                       createAccountRequest.getSum(),
+                                       createAccountRequest.getLastModifiedTime(),
+                                       createAccountRequest.getCreatedTime());
+        int accountID = selectAccountByAccountName(accountName, userID).getAccountID();
         accountMapper.createNewAccountTable("UAT" + userID + "_" + accountID);
     }
 

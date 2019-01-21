@@ -31,15 +31,6 @@ public class Account {
         this.createdTime = createdTime;
     }
 
-    public Account(String AccountName, int userID) {
-
-        this.accountName = AccountName;
-        this.userID = userID;
-        sum = new BigDecimal(0);
-        lastModifiedTime = new Timestamp(System.currentTimeMillis());
-        createdTime = new Timestamp(System.currentTimeMillis());
-    }
-
     @Override
     public String toString() {
         return "Account{" +

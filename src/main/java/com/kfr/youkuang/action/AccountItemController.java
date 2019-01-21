@@ -1,14 +1,14 @@
 package com.kfr.youkuang.action;
 
 import com.kfr.youkuang.entity.AccountItem;
+import com.kfr.youkuang.pojo.InsertItemRequest;
+import com.kfr.youkuang.pojo.ModifyItemRequest;
 import com.kfr.youkuang.service.AccountItemService;
 import com.kfr.youkuang.service.ServiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -31,38 +31,24 @@ public class AccountItemController {
     //记一笔
     @PutMapping("/account/{accountID}")
     public ServiceStatus insert(@PathVariable("accountID") int accountID,
-                                String inOut,
-                                BigDecimal money,
-                                String time,
-                                Integer type,
-                                String tip,
+                                final InsertItemRequest insertItemRequest,
                                 HttpServletRequest request) {
-        long transtime = Long.parseLong(time);
-        AccountItem accountItem = new AccountItem(inOut,money,new Timestamp(transtime),type,tip);
-        return accountItemService.insert(accountItem, accountID, request);
+        return accountItemService.insert(insertItemRequest, accountID, request);
     }
 
     //修改账目
     @PatchMapping("/account/{accountID}")
     public ServiceStatus moodify(@PathVariable("accountID") int accountID,
-                        String accountItemID,
-                        String inOut,
-                        BigDecimal money,
-                        String time,
-                        int type,
-                        String tip,
-                        HttpServletRequest request) {
-        long transTime = Long.parseLong(time);
-        int iNo = Integer.valueOf(accountItemID).intValue();
-        AccountItem accountItem = new AccountItem(iNo,inOut,money,type,new Timestamp(transTime),tip);
-        return accountItemService.modify(accountItem, accountID, request);
+                                 ModifyItemRequest modifyItemRequest,
+                                 HttpServletRequest request) {
+        return accountItemService.modify(modifyItemRequest, accountID, request);
     }
 
     //删除账目
     @DeleteMapping("/account/{accountID}")
     public ServiceStatus delete(@PathVariable("accountID") int accountID,
-                       int accountItemID,
-                       HttpServletRequest request) {
+                                int accountItemID,
+                                HttpServletRequest request) {
         return accountItemService.delete(accountItemID, accountID, request);
     }
 

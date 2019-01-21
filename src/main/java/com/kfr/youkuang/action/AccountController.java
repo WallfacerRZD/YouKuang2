@@ -1,10 +1,14 @@
 package com.kfr.youkuang.action;
 
 import com.kfr.youkuang.entity.Account;
+import com.kfr.youkuang.pojo.CreateAccountRequest;
 import com.kfr.youkuang.service.AccountService;
 import com.kfr.youkuang.service.ServiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,14 +41,14 @@ public class AccountController {
             未登录的请求会被拦截器拦截(现在不管, 最后再配置), 不会进入该方法
             所以session.getAttribute("userID")一定会返回该登录用户的userID
          */
-        final int userID = (int)session.getAttribute("userID");
+        final int userID = (int) session.getAttribute("userID");
         return accountService.getAllAccountsByUserID(userID);
     }
 
     @PostMapping("/account")
-    public ServiceStatus createAccount(final String accountName, final HttpServletRequest request) {
+    public ServiceStatus createAccount(final CreateAccountRequest createAccountRequest, final HttpServletRequest request) {
 
-        return accountService.createAccount(new Account(accountName, (int) request.getSession().getAttribute("userID")));
+        return accountService.createAccount(createAccountRequest, request);
     }
 
   /*  @DeleteMapping("/account/{accountID}")

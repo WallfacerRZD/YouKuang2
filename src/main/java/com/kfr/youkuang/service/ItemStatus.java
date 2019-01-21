@@ -9,7 +9,7 @@ public class ItemStatus {
     private String description;
     private int iNo;
 
-    public ItemStatus(boolean succeed, String description,int iNo) {
+    public ItemStatus(boolean succeed, String description, int iNo) {
         this.succeed = succeed;
         this.description = description;
         this.iNo = iNo;
